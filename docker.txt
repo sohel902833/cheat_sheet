@@ -1,0 +1,33 @@
+1.To build a docker image from Dockerfile
+-->  docker build -t node_test_1 .  [node_test_1="image name"]
+
+2. To build second version of an existing docker images
+--> docker build -t node_test_1:v2 .
+
+3. To build docker image with specific docker file 
+
+--> docker build -t node_app_1 -f Dockerfile.dev .
+
+
+3.To run a new container using builded image
+-->docker run --name my_node_app_1 node_test_1  [my_node_app_1="container name", node_test_1="image name"]
+
+4.To map with local port with container port 
+-->docker run --name my_node_app_2 -p:8000:3000 node_test_1
+
+5.To stop a container 
+-->  docker stop node_app_2
+
+6. To remove a container 
+-->  docker rm my_node_app_2
+
+7. Run container with auto lookup
+--> docker run --name my_node_app_2 -p 8000:3000 -v $(pwd):/home/sohel/Works2023/docker_build/node_test_1  node_test_1:v2
+
+8.Run container with auto lookup and skiping particular folder/file
+
+--> docker run --name my_node_app_3 -p 8000:3000 -v $(pwd):/home/sohel/Works2023/docker_build/node_test_1 -v /home/sohel/Works2023/docker_build/node_test_1/node_modules  node_test_1:v2
+
+9. To navigte to docker container network.
+
+--> docker exec -it my_node_app_3  /bin/sh  [my_node_app_3="container name"]
